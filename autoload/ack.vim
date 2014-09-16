@@ -1,7 +1,8 @@
 function! ack#Ack(cmd, args)
   redraw
   echo "Searching ..."
-
+   
+  set noautochdir
   " If no pattern is provided, search for the word under the cursor
   if empty(a:args)
     let l:grepargs = expand("<cword>")
@@ -57,6 +58,8 @@ function! ack#Ack(cmd, args)
   endif
   call <SID>apply_maps()
   call <SID>highlight(l:grepargs)
+  
+  set autochdir
 
   redraw!
 endfunction
